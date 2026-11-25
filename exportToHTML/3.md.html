@@ -1,0 +1,276 @@
+<html>
+<head>
+<title>3.md</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #c77dbb; font-style: italic;}
+.s4 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+3.md</font>
+</center></td></tr></table>
+<pre><span class="s0"># </span><span class="s2">Отчет по лабораторной работе № 3. Алгоритмы, коллекции и функции</span>
+
+<span class="s0">## </span><span class="s2">1. Таблицы тестовых сценариев</span>
+
+<span class="s0">### </span><span class="s2">Задание 1. Классификация результатов </span><span class="s1">(</span><span class="s2">`task_1.py`</span><span class="s1">)</span>
+
+<span class="s0">| </span><span class="s1">№ </span><span class="s0">| </span><span class="s1">Входные данные `(score, work_type, absences)` </span><span class="s0">| </span><span class="s1">Ожидаемый результат </span><span class="s0">| </span><span class="s1">Фактический результат </span><span class="s0">| </span><span class="s1">Проверяемый случай </span><span class="s0">|</span>
+<span class="s0">|---:|---|---|---|---|</span>
+<span class="s0">| </span><span class="s1">1 </span><span class="s0">| </span><span class="s1">`(0, &quot;exam&quot;, 0)` </span><span class="s0">| </span><span class="s1">Уровень: недостаточный; экзаменационная работа </span><span class="s0">| </span><span class="s1">Уровень: недостаточный; экзаменационная работа </span><span class="s0">| </span><span class="s1">Нижняя граница диапазона `0–59` </span><span class="s0">|</span>
+<span class="s0">| </span><span class="s1">2 </span><span class="s0">| </span><span class="s1">`(59, &quot;practice&quot;, 2)` </span><span class="s0">| </span><span class="s1">Уровень: недостаточный; практическая работа </span><span class="s0">| </span><span class="s1">Уровень: недостаточный; практическая работа </span><span class="s0">| </span><span class="s1">Верхняя граница диапазона `0–59` </span><span class="s0">|</span>
+<span class="s0">| </span><span class="s1">3 </span><span class="s0">| </span><span class="s1">`(60, &quot;project&quot;, 3)` </span><span class="s0">| </span><span class="s1">Уровень: удовлетворительный; проектная работа </span><span class="s0">| </span><span class="s1">Уровень: удовлетворительный; проектная работа </span><span class="s0">| </span><span class="s1">Нижняя граница `60–74`, пороговое число пропусков (`3`, без штрафа) </span><span class="s0">|</span>
+<span class="s0">| </span><span class="s1">4 </span><span class="s0">| </span><span class="s1">`(74, &quot;exam&quot;, 0)` </span><span class="s0">| </span><span class="s1">Уровень: удовлетворительный; экзаменационная работа </span><span class="s0">| </span><span class="s1">Уровень: удовлетворительный; экзаменационная работа </span><span class="s0">| </span><span class="s1">Верхняя граница диапазона `60–74` </span><span class="s0">|</span>
+<span class="s0">| </span><span class="s1">5 </span><span class="s0">| </span><span class="s1">`(75, &quot;practice&quot;, 1)` </span><span class="s0">| </span><span class="s1">Уровень: хороший; практическая работа </span><span class="s0">| </span><span class="s1">Уровень: хороший; практическая работа </span><span class="s0">| </span><span class="s1">Нижняя граница диапазона `75–89` </span><span class="s0">|</span>
+<span class="s0">| </span><span class="s1">6 </span><span class="s0">| </span><span class="s1">`(89, &quot;project&quot;, 0)` </span><span class="s0">| </span><span class="s1">Уровень: хороший; проектная работа </span><span class="s0">| </span><span class="s1">Уровень: хороший; проектная работа </span><span class="s0">| </span><span class="s1">Верхняя граница диапазона `75–89` </span><span class="s0">|</span>
+<span class="s0">| </span><span class="s1">7 </span><span class="s0">| </span><span class="s1">`(90, &quot;exam&quot;, 0)` </span><span class="s0">| </span><span class="s1">Уровень: отличный; экзаменационная работа </span><span class="s0">| </span><span class="s1">Уровень: отличный; экзаменационная работа </span><span class="s0">| </span><span class="s1">Нижняя граница диапазона `90–100` </span><span class="s0">|</span>
+<span class="s0">| </span><span class="s1">8 </span><span class="s0">| </span><span class="s1">`(100, &quot;project&quot;, 0)` </span><span class="s0">| </span><span class="s1">Уровень: отличный; проектная работа </span><span class="s0">| </span><span class="s1">Уровень: отличный; проектная работа </span><span class="s0">| </span><span class="s1">Верхняя граница диапазона `90–100` </span><span class="s0">|</span>
+<span class="s0">| </span><span class="s1">9 </span><span class="s0">| </span><span class="s1">`(95, &quot;exam&quot;, 4)` </span><span class="s0">| </span><span class="s1">Уровень: хороший; экзаменационная работа </span><span class="s0">| </span><span class="s1">Уровень: хороший; экзаменационная работа </span><span class="s0">| </span><span class="s1">Снижение уровня на 1 ступень при более чем 3 пропусках </span><span class="s0">|</span>
+<span class="s0">| </span><span class="s1">10 </span><span class="s0">| </span><span class="s1">`(45, &quot;practice&quot;, 5)` </span><span class="s0">| </span><span class="s1">Уровень: недостаточный; практическая работа </span><span class="s0">| </span><span class="s1">Уровень: недостаточный; практическая работа </span><span class="s0">| </span><span class="s1">Пропусков более 3, но уровень не падает ниже «недостаточный» </span><span class="s0">|</span>
+<span class="s0">| </span><span class="s1">11 </span><span class="s0">| </span><span class="s1">`(-1, &quot;exam&quot;, 0)` </span><span class="s0">| </span><span class="s1">Ошибка: некорректный диапазон данных </span><span class="s0">| </span><span class="s1">Ошибка: некорректный диапазон данных </span><span class="s0">| </span><span class="s1">Выход балла за нижнюю границу </span><span class="s0">|</span>
+<span class="s0">| </span><span class="s1">12 </span><span class="s0">| </span><span class="s1">`(85, &quot;lab&quot;, 2)` </span><span class="s0">| </span><span class="s1">Уровень: хороший; неизвестный тип работы </span><span class="s0">| </span><span class="s1">Уровень: хороший; неизвестный тип работы </span><span class="s0">| </span><span class="s1">Ветвь `case _:` для неизвестного типа работы </span><span class="s0">|</span>
+
+<span class="s1">**</span><span class="s2">Порядок проверки условий и недостижимые ветви</span><span class="s1">:**</span>
+<span class="s0">1. </span><span class="s2">Сначала проверяется корректность диапазонов </span><span class="s1">(</span><span class="s2">`0 </span><span class="s1">&lt;</span><span class="s2">= score </span><span class="s1">&lt;</span><span class="s2">= 100` и `0 </span><span class="s1">&lt;</span><span class="s2">= absences </span><span class="s1">&lt;</span><span class="s2">= 5`</span><span class="s1">)</span><span class="s2">. Если проверка не пройдена, выполнение классификации прекращается </span><span class="s1">(</span><span class="s2">ранний выход</span><span class="s1">)</span><span class="s2">.</span>
+<span class="s0">2. </span><span class="s2">Далее проверка баллов идет строго по убыванию порогов</span><span class="s1">: </span><span class="s2">`score </span><span class="s1">&gt;</span><span class="s2">= 90` → `score </span><span class="s1">&gt;</span><span class="s2">= 75` → `score </span><span class="s1">&gt;</span><span class="s2">= 60` → `else`.</span>
+<span class="s0">3. </span><span class="s1">**</span><span class="s2">Недостижимость ветвей</span><span class="s1">:** </span><span class="s2">если бы ветвь `score </span><span class="s1">&gt;</span><span class="s2">= 60` стояла </span><span class="s1">*</span><span class="s2">выше</span><span class="s1">* </span><span class="s2">`score </span><span class="s1">&gt;</span><span class="s2">= 75` и `score </span><span class="s1">&gt;</span><span class="s2">= 90`, то ветви для уровней «хороший» и «отличный» стали бы недостижимыми, так как любое число от 75 и выше уже удовлетворяет условию `score </span><span class="s1">&gt;</span><span class="s2">= 60`. Кроме того, из-за предварительной валидации диапазона в блоке классификации недостижимы состояния с `score </span><span class="s1">&lt; </span><span class="s2">0`, `score </span><span class="s1">&gt; </span><span class="s2">100` и `absences </span><span class="s1">&gt; </span><span class="s2">5`.</span>
+
+<span class="s0">---</span>
+
+<span class="s0">### </span><span class="s2">Задание 5. Тестовые сценарии анализатора </span><span class="s1">(</span><span class="s2">`task_5.py`</span><span class="s1">)</span>
+
+<span class="s0">| </span><span class="s1">№ </span><span class="s0">| </span><span class="s1">Сценарий </span><span class="s0">| </span><span class="s1">Входные данные </span><span class="s0">| </span><span class="s1">Ожидаемый результат </span><span class="s0">| </span><span class="s1">Фактический результат </span><span class="s0">|</span>
+<span class="s0">|---:|---|---|---|---|</span>
+<span class="s0">| </span><span class="s1">1 </span><span class="s0">| </span><span class="s1">Обычный набор данных </span><span class="s0">| </span><span class="s1">4 студента (`Анна`, `Борис`, `Дарья`, `Илья`) </span><span class="s0">| </span><span class="s1">Лидер: `Дарья` (93.75); средний группы: 75.92; все 4 категории по 1 человеку </span><span class="s0">| </span><span class="s1">Совпадает </span><span class="s0">|</span>
+<span class="s0">| </span><span class="s1">2 </span><span class="s0">| </span><span class="s1">Один студент </span><span class="s0">| </span><span class="s1">`{&quot;Анна&quot;: [80, 90]}` </span><span class="s0">| </span><span class="s1">Лидер: `[&quot;Анна&quot;]` (85.00); средний группы: 85.00; категория «хороший»: 1 </span><span class="s0">| </span><span class="s1">Совпадает </span><span class="s0">|</span>
+<span class="s0">| </span><span class="s1">3 </span><span class="s0">| </span><span class="s1">Несколько лидеров </span><span class="s0">| </span><span class="s1">`{&quot;Анна&quot;: [90, 90], &quot;Дарья&quot;: [85, 95]}` </span><span class="s0">| </span><span class="s1">Лидеры: `[&quot;Анна&quot;, &quot;Дарья&quot;]` (90.00) </span><span class="s0">| </span><span class="s1">Совпадает </span><span class="s0">|</span>
+<span class="s0">| </span><span class="s1">4 </span><span class="s0">| </span><span class="s1">Пустая группа </span><span class="s0">| </span><span class="s1">`{}` </span><span class="s0">| </span><span class="s1">Лидеры: `[]`; средний группы: `None`; категории пустые </span><span class="s0">| </span><span class="s1">Совпадает </span><span class="s0">|</span>
+<span class="s0">| </span><span class="s1">5 </span><span class="s0">| </span><span class="s1">Студент без результатов </span><span class="s0">| </span><span class="s1">`{&quot;Анна&quot;: [80], &quot;Илья&quot;: []}` </span><span class="s0">| </span><span class="s1">Для Ильи: `mean/min/max = None`, категория «нет данных»; в расчете среднего группы не участвует </span><span class="s0">| </span><span class="s1">Совпадает </span><span class="s0">|</span>
+<span class="s0">| </span><span class="s1">6 </span><span class="s0">| </span><span class="s1">Граничные значения </span><span class="s0">| </span><span class="s1">Оценки `[59]`, `[60]`, `[74]`, `[75]`, `[89]`, `[90]` </span><span class="s0">| </span><span class="s1">Категории: недостаточный, удовлетворительный, удовлетворительный, хороший, хороший, отличный </span><span class="s0">| </span><span class="s1">Совпадает </span><span class="s0">|</span>
+
+<span class="s0">---</span>
+
+<span class="s0">## </span><span class="s2">2. Псевдокод алгоритмов</span>
+
+<span class="s0">### </span><span class="s2">Алгоритм 1. Однопроходный расчет статистик и подсчет элементов выше среднего </span><span class="s1">(</span><span class="s2">`task_2.py`</span><span class="s1">)</span>
+
+<span class="s0">```</span><span class="s3">text</span>
+<span class="s4">АЛГОРИТМ AnalyzeMeasurements(A):</span>
+    <span class="s4">Вход: непустой список чисел A длины n</span>
+    <span class="s4">Выход: total, min_val, max_val, even_count, above_avg_count</span>
+
+    <span class="s4">total &lt;- 0</span>
+    <span class="s4">min_val &lt;- A[0]</span>
+    <span class="s4">max_val &lt;- A[0]</span>
+    <span class="s4">even_count &lt;- 0</span>
+
+    <span class="s4">// Проход 1: сумма, минимум, максимум, четные</span>
+    <span class="s4">ДЛЯ КАЖДОГО x ИЗ A:</span>
+        <span class="s4">total &lt;- total + x</span>
+        <span class="s4">ЕСЛИ x &lt; min_val ТО:</span>
+            <span class="s4">min_val &lt;- x</span>
+        <span class="s4">ЕСЛИ x &gt; max_val ТО:</span>
+            <span class="s4">max_val &lt;- x</span>
+        <span class="s4">ЕСЛИ x mod 2 == 0 ТО:</span>
+            <span class="s4">even_count &lt;- even_count + 1</span>
+
+    <span class="s4">average &lt;- total / n</span>
+    <span class="s4">above_avg_count &lt;- 0</span>
+
+    <span class="s4">// Проход 2: подсчет значений строго выше среднего</span>
+    <span class="s4">ДЛЯ КАЖДОГО x ИЗ A:</span>
+        <span class="s4">ЕСЛИ x &gt; average ТО:</span>
+            <span class="s4">above_avg_count &lt;- above_avg_count + 1</span>
+
+    <span class="s4">ВЕРНУТЬ (total, min_val, max_val, even_count, above_avg_count)</span>
+<span class="s0">```</span>
+
+<span class="s0">### </span><span class="s2">Алгоритм 2. Проверка простоты числа до </span><span class="s1">$</span><span class="s2">\lfloor\sqrt{n}\rfloor</span><span class="s1">$ (</span><span class="s2">`task_2.py`</span><span class="s1">)</span>
+
+<span class="s0">```</span><span class="s3">text</span>
+<span class="s4">АЛГОРИТМ IsPrime(n):</span>
+    <span class="s4">Вход: целое число n</span>
+    <span class="s4">Выход: ИСТИНА, если n простое, иначе ЛОЖЬ</span>
+
+    <span class="s4">ЕСЛИ n &lt; 2 ТО:</span>
+        <span class="s4">ВЕРНУТЬ ЛОЖЬ</span>
+    <span class="s4">ЕСЛИ n == 2 ТО:</span>
+        <span class="s4">ВЕРНУТЬ ИСТИНА</span>
+    <span class="s4">ЕСЛИ n mod 2 == 0 ТО:</span>
+        <span class="s4">ВЕРНУТЬ ЛОЖЬ</span>
+
+    <span class="s4">divisor &lt;- 3</span>
+    <span class="s4">ПОКА divisor * divisor &lt;= n:</span>
+        <span class="s4">ЕСЛИ n mod divisor == 0 ТО:</span>
+            <span class="s4">ВЕРНУТЬ ЛОЖЬ</span>
+        <span class="s4">divisor &lt;- divisor + 2</span>
+
+    <span class="s4">ВЕРНУТЬ ИСТИНА</span>
+<span class="s0">```</span>
+
+<span class="s0">### </span><span class="s2">Алгоритм 3. Бинарный поиск с подсчетом сравнений </span><span class="s1">(</span><span class="s2">`task_2.py`</span><span class="s1">)</span>
+
+<span class="s0">```</span><span class="s3">text</span>
+<span class="s4">АЛГОРИТМ BinarySearch(A, target):</span>
+    <span class="s4">Вход: отсортированный список A длины n, искомое значение target</span>
+    <span class="s4">Выход: индекс первого найденного совпадения (или -1) и число сравнений</span>
+
+    <span class="s4">left &lt;- 0</span>
+    <span class="s4">right &lt;- n - 1</span>
+    <span class="s4">comparisons &lt;- 0</span>
+
+    <span class="s4">ПОКА left &lt;= right:</span>
+        <span class="s4">mid &lt;- (left + right) div 2</span>
+        <span class="s4">comparisons &lt;- comparisons + 1</span>
+        <span class="s4">ЕСЛИ A[mid] == target ТО:</span>
+            <span class="s4">ВЕРНУТЬ (mid, comparisons)</span>
+        <span class="s4">ИНАЧЕ ЕСЛИ A[mid] &lt; target ТО:</span>
+            <span class="s4">left &lt;- mid + 1</span>
+        <span class="s4">ИНАЧЕ:</span>
+            <span class="s4">right &lt;- mid - 1</span>
+
+    <span class="s4">ВЕРНУТЬ (-1, comparisons)</span>
+<span class="s0">```</span>
+
+<span class="s0">---</span>
+
+<span class="s0">## </span><span class="s2">3. Оценки временной и пространственной сложности</span>
+
+<span class="s0">### </span><span class="s2">Алгоритмы Задания 2</span>
+
+<span class="s0">| </span><span class="s1">Алгоритм </span><span class="s0">| </span><span class="s1">Временная сложность </span><span class="s0">| </span><span class="s1">Дополнительная память </span><span class="s0">| </span><span class="s1">Параметр зависимости </span><span class="s0">|</span>
+<span class="s0">|---|---|---|---|</span>
+<span class="s0">| </span><span class="s1">Однопроходная статистика (сумма, min, max, четные) </span><span class="s0">| </span><span class="s1">$O(n)$ </span><span class="s0">| </span><span class="s1">$O(1)$ </span><span class="s0">| </span><span class="s1">$n$ — длина списка </span><span class="s0">|</span>
+<span class="s0">| </span><span class="s1">Подсчет значений выше среднего </span><span class="s0">| </span><span class="s1">$O(n)$ </span><span class="s0">| </span><span class="s1">$O(1)$ </span><span class="s0">| </span><span class="s1">$n$ — длина списка </span><span class="s0">|</span>
+<span class="s0">| </span><span class="s1">Линейный поиск </span><span class="s0">| </span><span class="s1">$O(n)$ </span><span class="s0">| </span><span class="s1">$O(1)$ </span><span class="s0">| </span><span class="s1">$n$ — длина списка </span><span class="s0">|</span>
+<span class="s0">| </span><span class="s1">Проверка простоты числа </span><span class="s0">| </span><span class="s1">$O(\sqrt{N})$ </span><span class="s0">| </span><span class="s1">$O(1)$ </span><span class="s0">| </span><span class="s1">$N$ — величина проверяемого числа </span><span class="s0">|</span>
+<span class="s0">| </span><span class="s1">Сортировка выбором (Selection Sort) </span><span class="s0">| </span><span class="s1">$O(n^2)$ </span><span class="s0">| </span><span class="s1">$O(1)$ (или $O(n)$ при копировании) </span><span class="s0">| </span><span class="s1">$n$ — длина списка </span><span class="s0">|</span>
+<span class="s0">| </span><span class="s1">Бинарный поиск </span><span class="s0">| </span><span class="s1">$O(\log n)$ </span><span class="s0">| </span><span class="s1">$O(1)$ </span><span class="s0">| </span><span class="s1">$n$ — длина отсортированного списка </span><span class="s0">|</span>
+
+<span class="s1">**</span><span class="s2">Обоснование ограничения делителей квадратным корнем</span><span class="s1">:**</span>
+<span class="s2">Если составное число </span><span class="s1">$</span><span class="s2">N</span><span class="s1">$ </span><span class="s2">раскладывается на множители </span><span class="s1">$</span><span class="s2">N = a \cdot b</span><span class="s1">$ (</span><span class="s2">где </span><span class="s1">$</span><span class="s2">a, b \ge 2</span><span class="s1">$)</span><span class="s2">, то оба множителя не могут одновременно быть строго больше </span><span class="s1">$</span><span class="s2">\sqrt{N}</span><span class="s1">$ </span><span class="s2">— иначе их произведение превысило бы </span><span class="s1">$</span><span class="s2">N</span><span class="s1">$</span><span class="s2">. Следовательно, хотя бы один нетривиальный делитель всегда не превосходит </span><span class="s1">$</span><span class="s2">\lfloor\sqrt{N}\rfloor</span><span class="s1">$</span><span class="s2">. Если до </span><span class="s1">$</span><span class="s2">\lfloor\sqrt{N}\rfloor</span><span class="s1">$ </span><span class="s2">делителей не найдено, их не существует вовсе, и число </span><span class="s1">$</span><span class="s2">N</span><span class="s1">$ </span><span class="s2">простое.</span>
+
+<span class="s1">**</span><span class="s2">Сравнение числа сравнений линейного и бинарного поиска </span><span class="s1">(</span><span class="s2">худший случай — элемент в конце или отсутствует</span><span class="s1">):**</span>
+
+<span class="s0">| </span><span class="s1">Размер списка ($n$) </span><span class="s0">| </span><span class="s1">Линейный поиск (сравнений) </span><span class="s0">| </span><span class="s1">Бинарный поиск (сравнений) </span><span class="s0">| </span><span class="s1">Во сколько раз бинарный эффективнее </span><span class="s0">|</span>
+<span class="s0">|---:|---:|---:|---:|</span>
+<span class="s0">| </span><span class="s1">10 </span><span class="s0">| </span><span class="s1">10 </span><span class="s0">| </span><span class="s1">4 </span><span class="s0">| </span><span class="s1">в 2.5 раза </span><span class="s0">|</span>
+<span class="s0">| </span><span class="s1">100 </span><span class="s0">| </span><span class="s1">100 </span><span class="s0">| </span><span class="s1">7 </span><span class="s0">| </span><span class="s1">в 14.3 раза </span><span class="s0">|</span>
+<span class="s0">| </span><span class="s1">1000 </span><span class="s0">| </span><span class="s1">1000 </span><span class="s0">| </span><span class="s1">10 </span><span class="s0">| </span><span class="s1">в 100 раз </span><span class="s0">|</span>
+
+<span class="s0">### </span><span class="s2">Сложность построения общей статистики </span><span class="s1">(</span><span class="s2">Задание 5</span><span class="s1">)</span>
+
+<span class="s2">Пусть </span><span class="s1">$</span><span class="s2">S</span><span class="s1">$ </span><span class="s2">— количество студентов в словаре `students`, а </span><span class="s1">$</span><span class="s2">M = \sum</span><span class="s1">_</span><span class="s2">{i=1}^{S} k_i</span><span class="s1">$ </span><span class="s2">— общее число всех оценок у всех студентов.</span>
+<span class="s0">- </span><span class="s2">Вычисление `student_summary` для всех студентов</span><span class="s1">: </span><span class="s2">однократный проход по каждой оценке дает </span><span class="s1">$</span><span class="s2">O</span><span class="s1">(</span><span class="s2">M + S</span><span class="s1">)$ </span><span class="s2">по времени и </span><span class="s1">$</span><span class="s2">O</span><span class="s1">(</span><span class="s2">S</span><span class="s1">)$ </span><span class="s2">дополнительной памяти для хранения итоговых словарей.</span>
+<span class="s0">- </span><span class="s2">Вычисление `group_summary` и `find_top_students`</span><span class="s1">: </span><span class="s2">один проход по готовым сводкам студентов занимает </span><span class="s1">$</span><span class="s2">O</span><span class="s1">(</span><span class="s2">S</span><span class="s1">)$</span><span class="s2">.</span>
+<span class="s0">- </span><span class="s2">Формирование рейтинга </span><span class="s1">(</span><span class="s2">`sorted` по среднему баллу без изменения исходного словаря</span><span class="s1">): $</span><span class="s2">O</span><span class="s1">(</span><span class="s2">S \log S</span><span class="s1">)$ </span><span class="s2">по времени и </span><span class="s1">$</span><span class="s2">O</span><span class="s1">(</span><span class="s2">S</span><span class="s1">)$ </span><span class="s2">по памяти.</span>
+<span class="s0">- </span><span class="s1">**</span><span class="s2">Итоговая сложность</span><span class="s1">:** $</span><span class="s2">O</span><span class="s1">(</span><span class="s2">M + S \log S</span><span class="s1">)$ </span><span class="s2">по времени и </span><span class="s1">$</span><span class="s2">O</span><span class="s1">(</span><span class="s2">S</span><span class="s1">)$ </span><span class="s2">дополнительной памяти </span><span class="s1">(</span><span class="s2">исходный словарь не дублируется целиком</span><span class="s1">)</span><span class="s2">.</span>
+
+<span class="s0">---</span>
+
+<span class="s0">## </span><span class="s2">4. Обоснование выбора коллекций </span><span class="s1">(</span><span class="s2">`task_3.py`</span><span class="s1">)</span>
+
+<span class="s0">- </span><span class="s1">**</span><span class="s2">Множество </span><span class="s1">(</span><span class="s2">`set`</span><span class="s1">) </span><span class="s2">для уникальных студентов и работ</span><span class="s1">:** </span><span class="s2">реализовано на основе хеш-таблицы. Автоматически исключает дубликаты при добавлении и поддерживает встроенные теоретико-множественные операции </span><span class="s1">(</span><span class="s2">например, пересечение `&amp;` для поиска студентов, сдавших обе работы</span><span class="s1">) </span><span class="s2">за линейное время от размера меньшего множества.</span>
+<span class="s0">- </span><span class="s1">**</span><span class="s2">Кортеж </span><span class="s1">(</span><span class="s2">`tuple`</span><span class="s1">) </span><span class="s2">как ключ словаря</span><span class="s1">:** </span><span class="s2">кортеж неизменяем </span><span class="s1">(</span><span class="s2">immutable</span><span class="s1">)</span><span class="s2">. Если все его элементы также неизменяемы и хешируемы </span><span class="s1">(</span><span class="s2">как `</span><span class="s1">(</span><span class="s2">str, str</span><span class="s1">)</span><span class="s2">` в `</span><span class="s1">(</span><span class="s2">student, laboratory</span><span class="s1">)</span><span class="s2">`</span><span class="s1">)</span><span class="s2">, у кортежа вычисляется постоянный хеш </span><span class="s1">(</span><span class="s2">`</span><span class="s1">__</span><span class="s2">hash</span><span class="s1">__</span><span class="s2">`</span><span class="s1">)</span><span class="s2">, поэтому он корректен в качестве ключа `dict`.</span>
+<span class="s0">- </span><span class="s1">**</span><span class="s2">Почему список </span><span class="s1">(</span><span class="s2">`list`</span><span class="s1">) </span><span class="s2">нельзя использовать как ключ словаря</span><span class="s1">:** </span><span class="s2">список изменяем </span><span class="s1">(</span><span class="s2">mutable</span><span class="s1">)</span><span class="s2">, поэтому в Python для него намеренно не определен метод `</span><span class="s1">__</span><span class="s2">hash</span><span class="s1">__</span><span class="s2">` </span><span class="s1">(</span><span class="s2">`TypeError</span><span class="s1">: </span><span class="s2">unhashable type</span><span class="s1">: '</span><span class="s2">list'`</span><span class="s1">)</span><span class="s2">. Если бы ключ мог меняться после вставки в хеш-таблицу, его хеш изменился бы, и запись стала бы недоступна по исходному бакету.</span>
+<span class="s0">- </span><span class="s1">**</span><span class="s2">Словарь </span><span class="s1">(</span><span class="s2">`dict`</span><span class="s1">) </span><span class="s2">против списка </span><span class="s1">(</span><span class="s2">`list`</span><span class="s1">) </span><span class="s2">для поиска по составному ключу</span><span class="s1">:** </span><span class="s2">поиск пары `</span><span class="s1">(</span><span class="s2">student, laboratory</span><span class="s1">)</span><span class="s2">` в списке кортежей требует полного перебора за </span><span class="s1">$</span><span class="s2">O</span><span class="s1">(</span><span class="s2">n</span><span class="s1">)$</span><span class="s2">, тогда как словарь обеспечивает прямой доступ по хешу ключа в среднем за </span><span class="s1">$</span><span class="s2">O</span><span class="s1">(</span><span class="s2">1</span><span class="s1">)$</span><span class="s2">, что критично при частых текстовых запросах </span><span class="s1">(</span><span class="s2">`best`, `attempts`</span><span class="s1">) </span><span class="s2">и инкрементальных обновлениях.</span>
+
+<span class="s1">**</span><span class="s2">Средняя и худшая сложность операций использованных коллекций</span><span class="s1">:**</span>
+
+<span class="s0">| </span><span class="s1">Коллекция </span><span class="s0">| </span><span class="s1">Добавление (среднее) </span><span class="s0">| </span><span class="s1">Поиск по значению / ключу (среднее) </span><span class="s0">| </span><span class="s1">Поиск (худшее) </span><span class="s0">| </span><span class="s1">Применение в `task_3.py` </span><span class="s0">|</span>
+<span class="s0">|---|---|---|---|---|</span>
+<span class="s0">| </span><span class="s1">`list` </span><span class="s0">| </span><span class="s1">$O(1)$ (в конец, `append`) </span><span class="s0">| </span><span class="s1">$O(n)$ </span><span class="s0">| </span><span class="s1">$O(n)$ </span><span class="s0">| </span><span class="s1">Исходный журнал попыток; список попыток студента </span><span class="s0">|</span>
+<span class="s0">| </span><span class="s1">`tuple` </span><span class="s0">| </span><span class="s1">Неизменяем </span><span class="s0">| </span><span class="s1">$O(n)$ </span><span class="s0">| </span><span class="s1">$O(n)$ </span><span class="s0">| </span><span class="s1">Запись попытки и составной ключ `(student, laboratory)` </span><span class="s0">|</span>
+<span class="s0">| </span><span class="s1">`set` </span><span class="s0">| </span><span class="s1">$O(1)$ </span><span class="s0">| </span><span class="s1">$O(1)$ </span><span class="s0">| </span><span class="s1">$O(n)$ </span><span class="s0">| </span><span class="s1">Множество студентов; множество сданных лабораторных </span><span class="s0">|</span>
+<span class="s0">| </span><span class="s1">`dict` </span><span class="s0">| </span><span class="s1">$O(1)$ </span><span class="s0">| </span><span class="s1">$O(1)$ </span><span class="s0">| </span><span class="s1">$O(n)$ </span><span class="s0">| </span><span class="s1">Попытки по студенту; лучший балл и число попыток по ключу </span><span class="s0">|</span>
+
+<span class="s0">---</span>
+
+<span class="s0">## </span><span class="s2">5. Области видимости LEGB, изменяемый аргумент по умолчанию и замыкания </span><span class="s1">(</span><span class="s2">`task_4.py`</span><span class="s1">)</span>
+
+<span class="s0">### </span><span class="s2">Схема областей видимости LEGB</span>
+
+<span class="s0">```</span><span class="s3">text</span>
+<span class="s4">+------------------------------------------------------------------+</span>
+<span class="s4">| B (Built-in): встроенные имена Python (len, str, print, ...)     |</span>
+<span class="s4">|  +------------------------------------------------------------+  |</span>
+<span class="s4">|  | G (Global): уровень модуля                                 |  |</span>
+<span class="s4">|  |   course = &quot;Основы программирования&quot;   (только чтение)     |  |</span>
+<span class="s4">|  |  +------------------------------------------------------+  |  |</span>
+<span class="s4">|  |  | E (Enclosing): внешняя функция outer()               |  |  |</span>
+<span class="s4">|  |  |   completed_labs = 0                                 |  |  |</span>
+<span class="s4">|  |  |  +------------------------------------------------+  |  |  |</span>
+<span class="s4">|  |  |  | L (Local): вложенная функция register_lab()    |  |  |  |</span>
+<span class="s4">|  |  |  |   nonlocal completed_labs  -&gt; изменяет имя в E |  |  |  |</span>
+<span class="s4">|  |  |  |   label = f&quot;{course}: {completed_labs}&quot;        |  |  |  |</span>
+<span class="s4">|  |  |  +------------------------------------------------+  |  |  |</span>
+<span class="s4">|  |  +------------------------------------------------------+  |  |</span>
+<span class="s4">|  +------------------------------------------------------------+  |</span>
+<span class="s4">+------------------------------------------------------------------+</span>
+<span class="s0">```</span>
+
+<span class="s1">**</span><span class="s2">Порядок поиска имен внутри `register_lab</span><span class="s1">()</span><span class="s2">`</span><span class="s1">:**</span>
+<span class="s0">1. </span><span class="s2">`label` — найдено сразу в </span><span class="s1">**</span><span class="s2">Local </span><span class="s1">(</span><span class="s2">L</span><span class="s1">)**</span><span class="s2">.</span>
+<span class="s0">2. </span><span class="s2">`completed_labs` — объявлено через `nonlocal`, поэтому связывается напрямую с переменной в </span><span class="s1">**</span><span class="s2">Enclosing </span><span class="s1">(</span><span class="s2">E</span><span class="s1">)** </span><span class="s2">и изменяет ее без создания локальной копии.</span>
+<span class="s0">3. </span><span class="s2">`course` — отсутствует в </span><span class="s1">**</span><span class="s2">L</span><span class="s1">** </span><span class="s2">и </span><span class="s1">**</span><span class="s2">E</span><span class="s1">**</span><span class="s2">, найдено в </span><span class="s1">**</span><span class="s2">Global </span><span class="s1">(</span><span class="s2">G</span><span class="s1">)** (</span><span class="s2">используется только для чтения</span><span class="s1">)</span><span class="s2">.</span>
+<span class="s0">4. </span><span class="s2">`len` / `print` — отсутствуют в </span><span class="s1">**</span><span class="s2">L</span><span class="s1">**</span><span class="s2">, </span><span class="s1">**</span><span class="s2">E</span><span class="s1">** </span><span class="s2">и </span><span class="s1">**</span><span class="s2">G</span><span class="s1">**</span><span class="s2">, найдены в </span><span class="s1">**</span><span class="s2">Built-in </span><span class="s1">(</span><span class="s2">B</span><span class="s1">)**</span><span class="s2">.</span>
+
+<span class="s0">### </span><span class="s2">Ошибка изменяемого значения по умолчанию</span>
+
+<span class="s2">В определении `def add_result</span><span class="s1">(</span><span class="s2">value, results=</span><span class="s1">[]):</span><span class="s2">` объект пустого списка `</span><span class="s1">[]</span><span class="s2">` создается </span><span class="s1">**</span><span class="s2">один раз</span><span class="s1">** </span><span class="s2">в момент выполнения инструкции `def` </span><span class="s1">(</span><span class="s2">создания объекта функции</span><span class="s1">)</span><span class="s2">, а не при каждом ее вызове. Ссылка на этот единственный список хранится в атрибуте `add_result.</span><span class="s1">__</span><span class="s2">defaults</span><span class="s1">__</span><span class="s2">`. В результате каждый последующий вызов без второго аргумента мутирует один и тот же список, накапливая данные прошлых вызовов.</span>
+
+<span class="s1">**</span><span class="s2">Исправление</span><span class="s1">:** </span><span class="s2">использовать неизменяемый маркер `None` и создавать новый список внутри тела функции</span><span class="s1">:</span>
+
+<span class="s0">```</span><span class="s3">python</span>
+<span class="s4">def add_result(value: int, results: list[int] | None = None) -&gt; list[int]:</span>
+    <span class="s4">if results is None:</span>
+        <span class="s4">results = []</span>
+    <span class="s4">else:</span>
+        <span class="s4">results = list(results)</span>
+    <span class="s4">results.append(value)</span>
+    <span class="s4">return results</span>
+<span class="s0">```</span>
+
+<span class="s0">### </span><span class="s2">Замыкание в `make_threshold_checker</span><span class="s1">(</span><span class="s2">threshold</span><span class="s1">)</span><span class="s2">`</span>
+
+<span class="s2">При вызове `make_threshold_checker</span><span class="s1">(</span><span class="s2">threshold</span><span class="s1">)</span><span class="s2">` возвращается внутренняя функция `checker</span><span class="s1">(</span><span class="s2">score</span><span class="s1">)</span><span class="s2">`. Даже после завершения работы внешней фабрики возвращенная функция сохраняет в своем замыкании </span><span class="s1">(</span><span class="s2">`</span><span class="s1">__</span><span class="s2">closure</span><span class="s1">__</span><span class="s2">`</span><span class="s1">) </span><span class="s2">ссылку на ячейку со значением параметра `threshold`. Поэтому два вызова, например `is_passing = make_threshold_checker</span><span class="s1">(</span><span class="s2">60</span><span class="s1">)</span><span class="s2">` и `is_excellent = make_threshold_checker</span><span class="s1">(</span><span class="s2">90</span><span class="s1">)</span><span class="s2">`, создают две полностью независимые функции со своими собственными сохраненными порогами `60` и `90`.</span>
+
+<span class="s0">---</span>
+
+<span class="s0">## </span><span class="s2">6. Контракты функций интеграционного задания </span><span class="s1">(</span><span class="s2">`task_5.py`</span><span class="s1">)</span>
+
+<span class="s0">| </span><span class="s1">Функция </span><span class="s0">| </span><span class="s1">Входные данные (предусловия) </span><span class="s0">| </span><span class="s1">Возвращаемый результат (постусловия) </span><span class="s0">| </span><span class="s1">Особые случаи и гарантии </span><span class="s0">|</span>
+<span class="s0">|---|---|---|---|</span>
+<span class="s0">| </span><span class="s1">`mean(values: list[int \| float]) -&gt; float \| None` </span><span class="s0">| </span><span class="s1">Список чисел `values`. </span><span class="s0">| </span><span class="s1">Среднее арифметическое (`float`) без использования `sum()`. </span><span class="s0">| </span><span class="s1">При пустом списке возвращает `None` (ранний `return`). Исходный список не изменяется. </span><span class="s0">|</span>
+<span class="s0">| </span><span class="s1">`minimum(values: list[int \| float]) -&gt; int \| float \| None` </span><span class="s0">| </span><span class="s1">Список чисел `values`. </span><span class="s0">| </span><span class="s1">Минимальный элемент без использования `min()`. </span><span class="s0">| </span><span class="s1">При пустом списке возвращает `None`. </span><span class="s0">|</span>
+<span class="s0">| </span><span class="s1">`maximum(values: list[int \| float]) -&gt; int \| float \| None` </span><span class="s0">| </span><span class="s1">Список чисел `values`. </span><span class="s0">| </span><span class="s1">Максимальный элемент без использования `max()`. </span><span class="s0">| </span><span class="s1">При пустом списке возвращает `None`. </span><span class="s0">|</span>
+<span class="s0">| </span><span class="s1">`classify(score: float \| None) -&gt; str` </span><span class="s0">| </span><span class="s1">Средний балл в диапазоне `0–100` или `None`. </span><span class="s0">| </span><span class="s1">Строка категории: `отличный` ($\ge 90$), `хороший` ($75\text{–}89.99\dots$), `удовлетворительный` ($60\text{–}74.99\dots$), `недостаточный` (менее $60$). </span><span class="s0">| </span><span class="s1">При `score is None` возвращает `&quot;нет данных&quot;`. </span><span class="s0">|</span>
+<span class="s0">| </span><span class="s1">`student_summary(name: str, results: list[int]) -&gt; dict` </span><span class="s0">| </span><span class="s1">Имя студента и список его оценок. </span><span class="s0">| </span><span class="s1">Словарь с ключами `name`, `count`, `mean`, `min`, `max`, `category`. </span><span class="s0">| </span><span class="s1">При `results == []`: `count = 0`, `mean = min = max = None`, `category = &quot;нет данных&quot;`. </span><span class="s0">|</span>
+<span class="s0">| </span><span class="s1">`group_summary(students: dict[str, list[int]]) -&gt; dict` </span><span class="s0">| </span><span class="s1">Словарь `{имя: [оценки]}`. </span><span class="s0">| </span><span class="s1">Словарь: `total_students`, `evaluated_students`, `group_mean`, `category_counts`, `top_students`, `ranking`. </span><span class="s0">| </span><span class="s1">При пустой группе: `group_mean = None`, `top_students = []`, `ranking = []`. Студенты без оценок учитываются в `category_counts[&quot;нет данных&quot;]`, но не искажают `group_mean`. Исходный словарь не изменяется. </span><span class="s0">|</span>
+<span class="s0">| </span><span class="s1">`find_top_students(students: dict[str, list[int]]) -&gt; list[str]` </span><span class="s0">| </span><span class="s1">Словарь `{имя: [оценки]}`. </span><span class="s0">| </span><span class="s1">Список имен всех студентов с максимальным средним баллом. </span><span class="s0">| </span><span class="s1">Если группа пуста или ни у кого нет оценок, возвращает `[]`. При равных максимальных средних возвращает всех лидеров. </span><span class="s0">|</span>
+<span class="s0">| </span><span class="s1">`format_report(student_data: list[dict], group_data: dict) -&gt; str` </span><span class="s0">| </span><span class="s1">Список сводок студентов и словарь сводки группы. </span><span class="s0">| </span><span class="s1">Готовый многострочный текстовый отчет с таблицей студентов, рейтингом, лидерами и распределением по категориям. </span><span class="s0">| </span><span class="s1">Корректно форматирует `None` как `&quot;—&quot;` и пустую группу как сообщение об отсутствии данных. </span><span class="s0">|</span>
+
+<span class="s1">**</span><span class="s2">Схема декомпозиции `task_5.py`</span><span class="s1">:**</span>
+<span class="s0">1. </span><span class="s1">**</span><span class="s2">Базовый уровень вычислений</span><span class="s1">** (</span><span class="s2">`mean`, `minimum`, `maximum`, `classify`</span><span class="s1">) </span><span class="s2">— небольшие чистые функции без побочных эффектов.</span>
+<span class="s0">2. </span><span class="s1">**</span><span class="s2">Уровень агрегации</span><span class="s1">** (</span><span class="s2">`student_summary`, `find_top_students`, `group_summary`</span><span class="s1">) </span><span class="s2">— сборка структурированных данных на основе базовых функций.</span>
+<span class="s0">3. </span><span class="s1">**</span><span class="s2">Уровень представления</span><span class="s1">** (</span><span class="s2">`format_report`</span><span class="s1">) </span><span class="s2">— отделение логики форматирования текста от расчетов.</span>
+
+<span class="s0">---</span>
+
+<span class="s0">## </span><span class="s2">7. Вывод о влиянии декомпозиции на читаемость решения</span>
+
+<span class="s2">Разделение интеграционного задания на восемь небольших функций с четкими контрактами сделало код линейным и самодокументируемым</span><span class="s1">:</span>
+
+<span class="s0">- </span><span class="s1">**</span><span class="s2">Снижение когнитивной нагрузки</span><span class="s1">:** </span><span class="s2">каждая функция решает ровно одну задачу </span><span class="s1">(</span><span class="s2">поиск минимума, классификация балла, сборка сводки группы или форматирование отчета</span><span class="s1">)</span><span class="s2">, поэтому ее логика читается целиком без прокрутки и глубокой вложенности циклов.</span>
+<span class="s0">- </span><span class="s1">**</span><span class="s2">Изоляция изменений</span><span class="s1">:** </span><span class="s2">изменение порогов оценивания требует правки только в `classify`, а изменение внешнего вида отчета — только в `format_report`, без риска сломать расчет статистики.</span>
+<span class="s0">- </span><span class="s1">**</span><span class="s2">Упрощение проверки краевых случаев</span><span class="s1">:** </span><span class="s2">обработка пустых списков </span><span class="s1">(</span><span class="s2">`None`</span><span class="s1">) </span><span class="s2">и граничных значений проверяется локально на уровне отдельных функций через `assert`, а не через громоздкие сквозные сценарии.</span>
+<span class="s0">- </span><span class="s1">**</span><span class="s2">Повторное использование</span><span class="s1">:** </span><span class="s2">базовые агрегаторы </span><span class="s1">(</span><span class="s2">`mean`, `minimum`, `maximum`</span><span class="s1">) </span><span class="s2">переиспользуются как для индивидуальной статистики студента, так и при подсчете показателей всей группы.</span></pre>
+</body>
+</html>

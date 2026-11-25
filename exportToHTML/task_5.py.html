@@ -1,0 +1,251 @@
+<html>
+<head>
+<title>task_5.py</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #5f826b; font-style: italic;}
+.s1 { color: #bcbec4;}
+.s2 { color: #cf8e6d;}
+.s3 { color: #bcbec4;}
+.s4 { color: #2aacb8;}
+.s5 { color: #6aab73;}
+.s6 { color: #7a7e85;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+task_5.py</font>
+</center></td></tr></table>
+<pre><span class="s0">&quot;&quot;&quot;Лабораторная работа № 3. Задание 5: интеграционный анализатор успеваемости.&quot;&quot;&quot;</span>
+
+<span class="s2">from </span><span class="s1">typing </span><span class="s2">import </span><span class="s1">Any</span>
+
+
+<span class="s2">def </span><span class="s1">mean</span><span class="s3">(</span><span class="s1">values</span><span class="s3">: </span><span class="s1">list</span><span class="s3">[</span><span class="s1">int </span><span class="s3">| </span><span class="s1">float</span><span class="s3">]) </span><span class="s1">-&gt; float </span><span class="s3">| </span><span class="s2">None</span><span class="s3">:</span>
+    <span class="s0">&quot;&quot;&quot;Вычисляет среднее арифметическое без использования встроенной sum().&quot;&quot;&quot;</span>
+    <span class="s2">if not </span><span class="s1">values</span><span class="s3">:</span>
+        <span class="s2">return None</span>
+    <span class="s1">total </span><span class="s3">= </span><span class="s4">0.0</span>
+    <span class="s2">for </span><span class="s1">item </span><span class="s2">in </span><span class="s1">values</span><span class="s3">:</span>
+        <span class="s1">total </span><span class="s3">+= </span><span class="s1">item</span>
+    <span class="s2">return </span><span class="s1">total </span><span class="s3">/ </span><span class="s1">len</span><span class="s3">(</span><span class="s1">values</span><span class="s3">)</span>
+
+
+<span class="s2">def </span><span class="s1">minimum</span><span class="s3">(</span><span class="s1">values</span><span class="s3">: </span><span class="s1">list</span><span class="s3">[</span><span class="s1">int </span><span class="s3">| </span><span class="s1">float</span><span class="s3">]) </span><span class="s1">-&gt; int </span><span class="s3">| </span><span class="s1">float </span><span class="s3">| </span><span class="s2">None</span><span class="s3">:</span>
+    <span class="s0">&quot;&quot;&quot;Находит минимальный элемент без использования встроенной min().&quot;&quot;&quot;</span>
+    <span class="s2">if not </span><span class="s1">values</span><span class="s3">:</span>
+        <span class="s2">return None</span>
+    <span class="s1">current_min </span><span class="s3">= </span><span class="s1">values</span><span class="s3">[</span><span class="s4">0</span><span class="s3">]</span>
+    <span class="s2">for </span><span class="s1">item </span><span class="s2">in </span><span class="s1">values</span><span class="s3">[</span><span class="s4">1</span><span class="s3">:]:</span>
+        <span class="s2">if </span><span class="s1">item </span><span class="s3">&lt; </span><span class="s1">current_min</span><span class="s3">:</span>
+            <span class="s1">current_min </span><span class="s3">= </span><span class="s1">item</span>
+    <span class="s2">return </span><span class="s1">current_min</span>
+
+
+<span class="s2">def </span><span class="s1">maximum</span><span class="s3">(</span><span class="s1">values</span><span class="s3">: </span><span class="s1">list</span><span class="s3">[</span><span class="s1">int </span><span class="s3">| </span><span class="s1">float</span><span class="s3">]) </span><span class="s1">-&gt; int </span><span class="s3">| </span><span class="s1">float </span><span class="s3">| </span><span class="s2">None</span><span class="s3">:</span>
+    <span class="s0">&quot;&quot;&quot;Находит максимальный элемент без использования встроенной max().&quot;&quot;&quot;</span>
+    <span class="s2">if not </span><span class="s1">values</span><span class="s3">:</span>
+        <span class="s2">return None</span>
+    <span class="s1">current_max </span><span class="s3">= </span><span class="s1">values</span><span class="s3">[</span><span class="s4">0</span><span class="s3">]</span>
+    <span class="s2">for </span><span class="s1">item </span><span class="s2">in </span><span class="s1">values</span><span class="s3">[</span><span class="s4">1</span><span class="s3">:]:</span>
+        <span class="s2">if </span><span class="s1">item </span><span class="s3">&gt; </span><span class="s1">current_max</span><span class="s3">:</span>
+            <span class="s1">current_max </span><span class="s3">= </span><span class="s1">item</span>
+    <span class="s2">return </span><span class="s1">current_max</span>
+
+
+<span class="s2">def </span><span class="s1">classify</span><span class="s3">(</span><span class="s1">score</span><span class="s3">: </span><span class="s1">float </span><span class="s3">| </span><span class="s2">None</span><span class="s3">) </span><span class="s1">-&gt; str</span><span class="s3">:</span>
+    <span class="s0">&quot;&quot;&quot;Определяет категорию успеваемости по среднему баллу.&quot;&quot;&quot;</span>
+    <span class="s2">if </span><span class="s1">score </span><span class="s2">is None</span><span class="s3">:</span>
+        <span class="s2">return </span><span class="s5">&quot;нет данных&quot;</span>
+    <span class="s2">if </span><span class="s1">score </span><span class="s3">&gt;= </span><span class="s4">90</span><span class="s3">:</span>
+        <span class="s2">return </span><span class="s5">&quot;отличный&quot;</span>
+    <span class="s2">if </span><span class="s1">score </span><span class="s3">&gt;= </span><span class="s4">75</span><span class="s3">:</span>
+        <span class="s2">return </span><span class="s5">&quot;хороший&quot;</span>
+    <span class="s2">if </span><span class="s1">score </span><span class="s3">&gt;= </span><span class="s4">60</span><span class="s3">:</span>
+        <span class="s2">return </span><span class="s5">&quot;удовлетворительный&quot;</span>
+    <span class="s2">return </span><span class="s5">&quot;недостаточный&quot;</span>
+
+
+<span class="s2">def </span><span class="s1">student_summary</span><span class="s3">(</span><span class="s1">name</span><span class="s3">: </span><span class="s1">str</span><span class="s3">, </span><span class="s1">results</span><span class="s3">: </span><span class="s1">list</span><span class="s3">[</span><span class="s1">int</span><span class="s3">]) </span><span class="s1">-&gt; dict</span><span class="s3">[</span><span class="s1">str</span><span class="s3">, </span><span class="s1">Any</span><span class="s3">]:</span>
+    <span class="s0">&quot;&quot;&quot;Формирует индивидуальную сводку по одному студенту.&quot;&quot;&quot;</span>
+    <span class="s1">avg </span><span class="s3">= </span><span class="s1">mean</span><span class="s3">(</span><span class="s1">results</span><span class="s3">)</span>
+    <span class="s2">return </span><span class="s3">{</span>
+        <span class="s5">&quot;name&quot;</span><span class="s3">: </span><span class="s1">name</span><span class="s3">,</span>
+        <span class="s5">&quot;count&quot;</span><span class="s3">: </span><span class="s1">len</span><span class="s3">(</span><span class="s1">results</span><span class="s3">),</span>
+        <span class="s5">&quot;mean&quot;</span><span class="s3">: </span><span class="s1">avg</span><span class="s3">,</span>
+        <span class="s5">&quot;min&quot;</span><span class="s3">: </span><span class="s1">minimum</span><span class="s3">(</span><span class="s1">results</span><span class="s3">),</span>
+        <span class="s5">&quot;max&quot;</span><span class="s3">: </span><span class="s1">maximum</span><span class="s3">(</span><span class="s1">results</span><span class="s3">),</span>
+        <span class="s5">&quot;category&quot;</span><span class="s3">: </span><span class="s1">classify</span><span class="s3">(</span><span class="s1">avg</span><span class="s3">),</span>
+    <span class="s3">}</span>
+
+
+<span class="s2">def </span><span class="s1">find_top_students</span><span class="s3">(</span><span class="s1">students</span><span class="s3">: </span><span class="s1">dict</span><span class="s3">[</span><span class="s1">str</span><span class="s3">, </span><span class="s1">list</span><span class="s3">[</span><span class="s1">int</span><span class="s3">]]) </span><span class="s1">-&gt; list</span><span class="s3">[</span><span class="s1">str</span><span class="s3">]:</span>
+    <span class="s0">&quot;&quot;&quot;Возвращает список имен всех студентов с максимальным средним баллом.&quot;&quot;&quot;</span>
+    <span class="s1">best_mean</span><span class="s3">: </span><span class="s1">float </span><span class="s3">| </span><span class="s2">None </span><span class="s3">= </span><span class="s2">None</span>
+    <span class="s1">leaders</span><span class="s3">: </span><span class="s1">list</span><span class="s3">[</span><span class="s1">str</span><span class="s3">] = []</span>
+
+    <span class="s2">for </span><span class="s1">name</span><span class="s3">, </span><span class="s1">results </span><span class="s2">in </span><span class="s1">students</span><span class="s3">.</span><span class="s1">items</span><span class="s3">():</span>
+        <span class="s1">avg </span><span class="s3">= </span><span class="s1">mean</span><span class="s3">(</span><span class="s1">results</span><span class="s3">)</span>
+        <span class="s2">if </span><span class="s1">avg </span><span class="s2">is None</span><span class="s3">:</span>
+            <span class="s2">continue</span>
+        <span class="s2">if </span><span class="s1">best_mean </span><span class="s2">is None or </span><span class="s1">avg </span><span class="s3">&gt; </span><span class="s1">best_mean</span><span class="s3">:</span>
+            <span class="s1">best_mean </span><span class="s3">= </span><span class="s1">avg</span>
+            <span class="s1">leaders </span><span class="s3">= [</span><span class="s1">name</span><span class="s3">]</span>
+        <span class="s2">elif </span><span class="s1">avg </span><span class="s3">== </span><span class="s1">best_mean</span><span class="s3">:</span>
+            <span class="s1">leaders</span><span class="s3">.</span><span class="s1">append</span><span class="s3">(</span><span class="s1">name</span><span class="s3">)</span>
+
+    <span class="s2">return </span><span class="s1">leaders</span>
+
+
+<span class="s2">def </span><span class="s1">group_summary</span><span class="s3">(</span><span class="s1">students</span><span class="s3">: </span><span class="s1">dict</span><span class="s3">[</span><span class="s1">str</span><span class="s3">, </span><span class="s1">list</span><span class="s3">[</span><span class="s1">int</span><span class="s3">]]) </span><span class="s1">-&gt; dict</span><span class="s3">[</span><span class="s1">str</span><span class="s3">, </span><span class="s1">Any</span><span class="s3">]:</span>
+    <span class="s0">&quot;&quot;&quot;Вычисляет агрегированную статистику по всей группе без изменения students.&quot;&quot;&quot;</span>
+    <span class="s1">summaries </span><span class="s3">= [</span><span class="s1">student_summary</span><span class="s3">(</span><span class="s1">name</span><span class="s3">, </span><span class="s1">results</span><span class="s3">) </span><span class="s2">for </span><span class="s1">name</span><span class="s3">, </span><span class="s1">results </span><span class="s2">in </span><span class="s1">students</span><span class="s3">.</span><span class="s1">items</span><span class="s3">()]</span>
+    <span class="s1">valid_means </span><span class="s3">= [</span><span class="s1">item</span><span class="s3">[</span><span class="s5">&quot;mean&quot;</span><span class="s3">] </span><span class="s2">for </span><span class="s1">item </span><span class="s2">in </span><span class="s1">summaries </span><span class="s2">if </span><span class="s1">item</span><span class="s3">[</span><span class="s5">&quot;mean&quot;</span><span class="s3">] </span><span class="s2">is not None</span><span class="s3">]</span>
+
+    <span class="s1">category_counts</span><span class="s3">: </span><span class="s1">dict</span><span class="s3">[</span><span class="s1">str</span><span class="s3">, </span><span class="s1">int</span><span class="s3">] = {}</span>
+    <span class="s2">for </span><span class="s1">item </span><span class="s2">in </span><span class="s1">summaries</span><span class="s3">:</span>
+        <span class="s1">cat </span><span class="s3">= </span><span class="s1">item</span><span class="s3">[</span><span class="s5">&quot;category&quot;</span><span class="s3">]</span>
+        <span class="s1">category_counts</span><span class="s3">[</span><span class="s1">cat</span><span class="s3">] = </span><span class="s1">category_counts</span><span class="s3">.</span><span class="s1">get</span><span class="s3">(</span><span class="s1">cat</span><span class="s3">, </span><span class="s4">0</span><span class="s3">) + </span><span class="s4">1</span>
+
+    <span class="s1">ranking </span><span class="s3">= </span><span class="s1">sorted</span><span class="s3">(</span>
+        <span class="s3">(</span><span class="s1">item </span><span class="s2">for </span><span class="s1">item </span><span class="s2">in </span><span class="s1">summaries </span><span class="s2">if </span><span class="s1">item</span><span class="s3">[</span><span class="s5">&quot;mean&quot;</span><span class="s3">] </span><span class="s2">is not None</span><span class="s3">),</span>
+        <span class="s1">key</span><span class="s3">=</span><span class="s2">lambda </span><span class="s1">item</span><span class="s3">: (-</span><span class="s1">item</span><span class="s3">[</span><span class="s5">&quot;mean&quot;</span><span class="s3">], </span><span class="s1">item</span><span class="s3">[</span><span class="s5">&quot;name&quot;</span><span class="s3">]),</span>
+    <span class="s3">)</span>
+
+    <span class="s2">return </span><span class="s3">{</span>
+        <span class="s5">&quot;total_students&quot;</span><span class="s3">: </span><span class="s1">len</span><span class="s3">(</span><span class="s1">students</span><span class="s3">),</span>
+        <span class="s5">&quot;evaluated_students&quot;</span><span class="s3">: </span><span class="s1">len</span><span class="s3">(</span><span class="s1">valid_means</span><span class="s3">),</span>
+        <span class="s5">&quot;group_mean&quot;</span><span class="s3">: </span><span class="s1">mean</span><span class="s3">(</span><span class="s1">valid_means</span><span class="s3">),</span>
+        <span class="s5">&quot;category_counts&quot;</span><span class="s3">: </span><span class="s1">category_counts</span><span class="s3">,</span>
+        <span class="s5">&quot;top_students&quot;</span><span class="s3">: </span><span class="s1">find_top_students</span><span class="s3">(</span><span class="s1">students</span><span class="s3">),</span>
+        <span class="s5">&quot;ranking&quot;</span><span class="s3">: </span><span class="s1">ranking</span><span class="s3">,</span>
+    <span class="s3">}</span>
+
+
+<span class="s2">def </span><span class="s1">format_report</span><span class="s3">(</span><span class="s1">student_data</span><span class="s3">: </span><span class="s1">list</span><span class="s3">[</span><span class="s1">dict</span><span class="s3">[</span><span class="s1">str</span><span class="s3">, </span><span class="s1">Any</span><span class="s3">]], </span><span class="s1">group_data</span><span class="s3">: </span><span class="s1">dict</span><span class="s3">[</span><span class="s1">str</span><span class="s3">, </span><span class="s1">Any</span><span class="s3">]) </span><span class="s1">-&gt; str</span><span class="s3">:</span>
+    <span class="s0">&quot;&quot;&quot;Форматирует многострочный текстовый отчет по студентам и группе.&quot;&quot;&quot;</span>
+    <span class="s2">if not </span><span class="s1">student_data</span><span class="s3">:</span>
+        <span class="s2">return </span><span class="s5">&quot;Отчет по группе: данные о студентах отсутствуют.&quot;</span>
+
+    <span class="s1">lines </span><span class="s3">= [</span>
+        <span class="s5">&quot;=== ОТЧЕТ ПО УСПЕВАЕМОСТИ ГРУППЫ ===&quot;</span><span class="s3">,</span>
+        <span class="s5">f&quot;</span><span class="s2">{</span><span class="s5">'Студент'</span><span class="s2">:</span><span class="s5">&lt;12</span><span class="s2">} </span><span class="s5">| </span><span class="s2">{</span><span class="s5">'Работ'</span><span class="s2">:</span><span class="s5">&gt;5</span><span class="s2">} </span><span class="s5">| </span><span class="s2">{</span><span class="s5">'Средний'</span><span class="s2">:</span><span class="s5">&gt;7</span><span class="s2">} </span><span class="s5">| </span><span class="s2">{</span><span class="s5">'Мин'</span><span class="s2">:</span><span class="s5">&gt;4</span><span class="s2">} </span><span class="s5">| </span><span class="s2">{</span><span class="s5">'Макс'</span><span class="s2">:</span><span class="s5">&gt;4</span><span class="s2">} </span><span class="s5">| Категория&quot;</span><span class="s3">,</span>
+        <span class="s5">&quot;-&quot; </span><span class="s3">* </span><span class="s4">68</span><span class="s3">,</span>
+    <span class="s3">]</span>
+
+    <span class="s2">for </span><span class="s1">item </span><span class="s2">in </span><span class="s1">student_data</span><span class="s3">:</span>
+        <span class="s1">mean_str </span><span class="s3">= </span><span class="s5">f&quot;</span><span class="s2">{</span><span class="s1">item</span><span class="s3">[</span><span class="s5">'mean'</span><span class="s3">]</span><span class="s2">:</span><span class="s5">.2f</span><span class="s2">}</span><span class="s5">&quot; </span><span class="s2">if </span><span class="s1">item</span><span class="s3">[</span><span class="s5">&quot;mean&quot;</span><span class="s3">] </span><span class="s2">is not None else </span><span class="s5">&quot;—&quot;</span>
+        <span class="s1">min_str </span><span class="s3">= </span><span class="s1">str</span><span class="s3">(</span><span class="s1">item</span><span class="s3">[</span><span class="s5">&quot;min&quot;</span><span class="s3">]) </span><span class="s2">if </span><span class="s1">item</span><span class="s3">[</span><span class="s5">&quot;min&quot;</span><span class="s3">] </span><span class="s2">is not None else </span><span class="s5">&quot;—&quot;</span>
+        <span class="s1">max_str </span><span class="s3">= </span><span class="s1">str</span><span class="s3">(</span><span class="s1">item</span><span class="s3">[</span><span class="s5">&quot;max&quot;</span><span class="s3">]) </span><span class="s2">if </span><span class="s1">item</span><span class="s3">[</span><span class="s5">&quot;max&quot;</span><span class="s3">] </span><span class="s2">is not None else </span><span class="s5">&quot;—&quot;</span>
+        <span class="s1">lines</span><span class="s3">.</span><span class="s1">append</span><span class="s3">(</span>
+            <span class="s5">f&quot;</span><span class="s2">{</span><span class="s1">item</span><span class="s3">[</span><span class="s5">'name'</span><span class="s3">]</span><span class="s2">:</span><span class="s5">&lt;12</span><span class="s2">} </span><span class="s5">| </span><span class="s2">{</span><span class="s1">item</span><span class="s3">[</span><span class="s5">'count'</span><span class="s3">]</span><span class="s2">:</span><span class="s5">&gt;5</span><span class="s2">} </span><span class="s5">| </span><span class="s2">{</span><span class="s1">mean_str</span><span class="s2">:</span><span class="s5">&gt;7</span><span class="s2">} </span><span class="s5">| &quot;</span>
+            <span class="s5">f&quot;</span><span class="s2">{</span><span class="s1">min_str</span><span class="s2">:</span><span class="s5">&gt;4</span><span class="s2">} </span><span class="s5">| </span><span class="s2">{</span><span class="s1">max_str</span><span class="s2">:</span><span class="s5">&gt;4</span><span class="s2">} </span><span class="s5">| </span><span class="s2">{</span><span class="s1">item</span><span class="s3">[</span><span class="s5">'category'</span><span class="s3">]</span><span class="s2">}</span><span class="s5">&quot;</span>
+        <span class="s3">)</span>
+
+    <span class="s1">group_mean_str </span><span class="s3">= (</span>
+        <span class="s5">f&quot;</span><span class="s2">{</span><span class="s1">group_data</span><span class="s3">[</span><span class="s5">'group_mean'</span><span class="s3">]</span><span class="s2">:</span><span class="s5">.2f</span><span class="s2">}</span><span class="s5">&quot;</span>
+        <span class="s2">if </span><span class="s1">group_data</span><span class="s3">[</span><span class="s5">&quot;group_mean&quot;</span><span class="s3">] </span><span class="s2">is not None</span>
+        <span class="s2">else </span><span class="s5">&quot;—&quot;</span>
+    <span class="s3">)</span>
+    <span class="s1">leaders_str </span><span class="s3">= </span><span class="s5">&quot;, &quot;</span><span class="s3">.</span><span class="s1">join</span><span class="s3">(</span><span class="s1">group_data</span><span class="s3">[</span><span class="s5">&quot;top_students&quot;</span><span class="s3">]) </span><span class="s2">or </span><span class="s5">&quot;—&quot;</span>
+
+    <span class="s1">lines</span><span class="s3">.</span><span class="s1">extend</span><span class="s3">(</span>
+        <span class="s3">[</span>
+            <span class="s5">&quot;-&quot; </span><span class="s3">* </span><span class="s4">68</span><span class="s3">,</span>
+            <span class="s5">f&quot;Всего студентов: </span><span class="s2">{</span><span class="s1">group_data</span><span class="s3">[</span><span class="s5">'total_students'</span><span class="s3">]</span><span class="s2">} </span><span class="s5">&quot;</span>
+            <span class="s5">f&quot;(с оценками: </span><span class="s2">{</span><span class="s1">group_data</span><span class="s3">[</span><span class="s5">'evaluated_students'</span><span class="s3">]</span><span class="s2">}</span><span class="s5">)&quot;</span><span class="s3">,</span>
+            <span class="s5">f&quot;Средний балл группы: </span><span class="s2">{</span><span class="s1">group_mean_str</span><span class="s2">}</span><span class="s5">&quot;</span><span class="s3">,</span>
+            <span class="s5">f&quot;Лидеры группы: </span><span class="s2">{</span><span class="s1">leaders_str</span><span class="s2">}</span><span class="s5">&quot;</span><span class="s3">,</span>
+            <span class="s5">&quot;Распределение по категориям:&quot;</span><span class="s3">,</span>
+        <span class="s3">]</span>
+    <span class="s3">)</span>
+
+    <span class="s2">for </span><span class="s1">category</span><span class="s3">, </span><span class="s1">count </span><span class="s2">in </span><span class="s1">group_data</span><span class="s3">[</span><span class="s5">&quot;category_counts&quot;</span><span class="s3">].</span><span class="s1">items</span><span class="s3">():</span>
+        <span class="s1">lines</span><span class="s3">.</span><span class="s1">append</span><span class="s3">(</span><span class="s5">f&quot;  - </span><span class="s2">{</span><span class="s1">category</span><span class="s2">}</span><span class="s5">: </span><span class="s2">{</span><span class="s1">count</span><span class="s2">}</span><span class="s5">&quot;</span><span class="s3">)</span>
+
+    <span class="s2">if </span><span class="s1">group_data</span><span class="s3">[</span><span class="s5">&quot;ranking&quot;</span><span class="s3">]:</span>
+        <span class="s1">lines</span><span class="s3">.</span><span class="s1">append</span><span class="s3">(</span><span class="s5">&quot;Рейтинг студентов:&quot;</span><span class="s3">)</span>
+        <span class="s2">for </span><span class="s1">place</span><span class="s3">, </span><span class="s1">item </span><span class="s2">in </span><span class="s1">enumerate</span><span class="s3">(</span><span class="s1">group_data</span><span class="s3">[</span><span class="s5">&quot;ranking&quot;</span><span class="s3">], </span><span class="s1">start</span><span class="s3">=</span><span class="s4">1</span><span class="s3">):</span>
+            <span class="s1">lines</span><span class="s3">.</span><span class="s1">append</span><span class="s3">(</span><span class="s5">f&quot;  </span><span class="s2">{</span><span class="s1">place</span><span class="s2">}</span><span class="s5">. </span><span class="s2">{</span><span class="s1">item</span><span class="s3">[</span><span class="s5">'name'</span><span class="s3">]</span><span class="s2">} </span><span class="s5">— </span><span class="s2">{</span><span class="s1">item</span><span class="s3">[</span><span class="s5">'mean'</span><span class="s3">]</span><span class="s2">:</span><span class="s5">.2f</span><span class="s2">}</span><span class="s5">&quot;</span><span class="s3">)</span>
+
+    <span class="s2">return </span><span class="s5">&quot;</span><span class="s2">\n</span><span class="s5">&quot;</span><span class="s3">.</span><span class="s1">join</span><span class="s3">(</span><span class="s1">lines</span><span class="s3">)</span>
+
+
+<span class="s2">def </span><span class="s1">run_tests</span><span class="s3">() </span><span class="s1">-&gt; </span><span class="s2">None</span><span class="s3">:</span>
+    <span class="s0">&quot;&quot;&quot;Проверяет все 6 тестовых сценариев из отчета.&quot;&quot;&quot;</span>
+    <span class="s6"># Сценарий 1: обычный набор данных (4 студента, все 4 категории)</span>
+    <span class="s1">group_1 </span><span class="s3">= {</span>
+        <span class="s5">&quot;Анна&quot;</span><span class="s3">: [</span><span class="s4">80</span><span class="s3">, </span><span class="s4">85</span><span class="s3">, </span><span class="s4">85</span><span class="s3">],          </span><span class="s6"># 83.33 -&gt; хороший</span>
+        <span class="s5">&quot;Борис&quot;</span><span class="s3">: [</span><span class="s4">68</span><span class="s3">, </span><span class="s4">70</span><span class="s3">, </span><span class="s4">72</span><span class="s3">],         </span><span class="s6"># 70.00 -&gt; удовлетворительный</span>
+        <span class="s5">&quot;Дарья&quot;</span><span class="s3">: [</span><span class="s4">90</span><span class="s3">, </span><span class="s4">95</span><span class="s3">, </span><span class="s4">92</span><span class="s3">, </span><span class="s4">98</span><span class="s3">],     </span><span class="s6"># 93.75 -&gt; отличный</span>
+        <span class="s5">&quot;Илья&quot;</span><span class="s3">: [</span><span class="s4">54</span><span class="s3">, </span><span class="s4">58</span><span class="s3">, </span><span class="s4">55</span><span class="s3">, </span><span class="s4">59</span><span class="s3">, </span><span class="s4">57</span><span class="s3">],  </span><span class="s6"># 56.60 -&gt; недостаточный</span>
+    <span class="s3">}</span>
+    <span class="s1">summary_1 </span><span class="s3">= </span><span class="s1">group_summary</span><span class="s3">(</span><span class="s1">group_1</span><span class="s3">)</span>
+    <span class="s2">assert </span><span class="s1">summary_1</span><span class="s3">[</span><span class="s5">&quot;top_students&quot;</span><span class="s3">] == [</span><span class="s5">&quot;Дарья&quot;</span><span class="s3">]</span>
+    <span class="s2">assert </span><span class="s1">round</span><span class="s3">(</span><span class="s1">summary_1</span><span class="s3">[</span><span class="s5">&quot;group_mean&quot;</span><span class="s3">], </span><span class="s4">2</span><span class="s3">) == </span><span class="s4">75.92</span>
+    <span class="s2">assert </span><span class="s1">summary_1</span><span class="s3">[</span><span class="s5">&quot;category_counts&quot;</span><span class="s3">] == {</span>
+        <span class="s5">&quot;хороший&quot;</span><span class="s3">: </span><span class="s4">1</span><span class="s3">,</span>
+        <span class="s5">&quot;удовлетворительный&quot;</span><span class="s3">: </span><span class="s4">1</span><span class="s3">,</span>
+        <span class="s5">&quot;отличный&quot;</span><span class="s3">: </span><span class="s4">1</span><span class="s3">,</span>
+        <span class="s5">&quot;недостаточный&quot;</span><span class="s3">: </span><span class="s4">1</span><span class="s3">,</span>
+    <span class="s3">}</span>
+
+    <span class="s6"># Сценарий 2: один студент</span>
+    <span class="s1">group_2 </span><span class="s3">= {</span><span class="s5">&quot;Анна&quot;</span><span class="s3">: [</span><span class="s4">80</span><span class="s3">, </span><span class="s4">90</span><span class="s3">]}</span>
+    <span class="s1">summary_2 </span><span class="s3">= </span><span class="s1">group_summary</span><span class="s3">(</span><span class="s1">group_2</span><span class="s3">)</span>
+    <span class="s2">assert </span><span class="s1">summary_2</span><span class="s3">[</span><span class="s5">&quot;top_students&quot;</span><span class="s3">] == [</span><span class="s5">&quot;Анна&quot;</span><span class="s3">]</span>
+    <span class="s2">assert </span><span class="s1">summary_2</span><span class="s3">[</span><span class="s5">&quot;group_mean&quot;</span><span class="s3">] == </span><span class="s4">85.0</span>
+    <span class="s2">assert </span><span class="s1">summary_2</span><span class="s3">[</span><span class="s5">&quot;category_counts&quot;</span><span class="s3">] == {</span><span class="s5">&quot;хороший&quot;</span><span class="s3">: </span><span class="s4">1</span><span class="s3">}</span>
+
+    <span class="s6"># Сценарий 3: несколько лидеров</span>
+    <span class="s1">group_3 </span><span class="s3">= {</span><span class="s5">&quot;Анна&quot;</span><span class="s3">: [</span><span class="s4">90</span><span class="s3">, </span><span class="s4">90</span><span class="s3">], </span><span class="s5">&quot;Дарья&quot;</span><span class="s3">: [</span><span class="s4">85</span><span class="s3">, </span><span class="s4">95</span><span class="s3">]}</span>
+    <span class="s2">assert </span><span class="s1">find_top_students</span><span class="s3">(</span><span class="s1">group_3</span><span class="s3">) == [</span><span class="s5">&quot;Анна&quot;</span><span class="s3">, </span><span class="s5">&quot;Дарья&quot;</span><span class="s3">]</span>
+
+    <span class="s6"># Сценарий 4: пустая группа</span>
+    <span class="s1">summary_4 </span><span class="s3">= </span><span class="s1">group_summary</span><span class="s3">({})</span>
+    <span class="s2">assert </span><span class="s1">summary_4</span><span class="s3">[</span><span class="s5">&quot;top_students&quot;</span><span class="s3">] == []</span>
+    <span class="s2">assert </span><span class="s1">summary_4</span><span class="s3">[</span><span class="s5">&quot;group_mean&quot;</span><span class="s3">] </span><span class="s2">is None</span>
+    <span class="s2">assert </span><span class="s1">summary_4</span><span class="s3">[</span><span class="s5">&quot;category_counts&quot;</span><span class="s3">] == {}</span>
+    <span class="s2">assert </span><span class="s5">&quot;отсутствуют&quot; </span><span class="s2">in </span><span class="s1">format_report</span><span class="s3">([], </span><span class="s1">summary_4</span><span class="s3">)</span>
+
+    <span class="s6"># Сценарий 5: студент без результатов</span>
+    <span class="s1">group_5 </span><span class="s3">= {</span><span class="s5">&quot;Анна&quot;</span><span class="s3">: [</span><span class="s4">80</span><span class="s3">], </span><span class="s5">&quot;Илья&quot;</span><span class="s3">: []}</span>
+    <span class="s1">ilya </span><span class="s3">= </span><span class="s1">student_summary</span><span class="s3">(</span><span class="s5">&quot;Илья&quot;</span><span class="s3">, [])</span>
+    <span class="s2">assert </span><span class="s1">ilya</span><span class="s3">[</span><span class="s5">&quot;mean&quot;</span><span class="s3">] </span><span class="s2">is None and </span><span class="s1">ilya</span><span class="s3">[</span><span class="s5">&quot;min&quot;</span><span class="s3">] </span><span class="s2">is None and </span><span class="s1">ilya</span><span class="s3">[</span><span class="s5">&quot;max&quot;</span><span class="s3">] </span><span class="s2">is None</span>
+    <span class="s2">assert </span><span class="s1">ilya</span><span class="s3">[</span><span class="s5">&quot;category&quot;</span><span class="s3">] == </span><span class="s5">&quot;нет данных&quot;</span>
+    <span class="s1">summary_5 </span><span class="s3">= </span><span class="s1">group_summary</span><span class="s3">(</span><span class="s1">group_5</span><span class="s3">)</span>
+    <span class="s2">assert </span><span class="s1">summary_5</span><span class="s3">[</span><span class="s5">&quot;group_mean&quot;</span><span class="s3">] == </span><span class="s4">80.0</span>
+    <span class="s2">assert </span><span class="s1">summary_5</span><span class="s3">[</span><span class="s5">&quot;evaluated_students&quot;</span><span class="s3">] == </span><span class="s4">1</span>
+
+    <span class="s6"># Сценарий 6: граничные значения</span>
+    <span class="s1">boundary_expected </span><span class="s3">= [</span>
+        <span class="s3">(</span><span class="s4">59</span><span class="s3">, </span><span class="s5">&quot;недостаточный&quot;</span><span class="s3">),</span>
+        <span class="s3">(</span><span class="s4">60</span><span class="s3">, </span><span class="s5">&quot;удовлетворительный&quot;</span><span class="s3">),</span>
+        <span class="s3">(</span><span class="s4">74</span><span class="s3">, </span><span class="s5">&quot;удовлетворительный&quot;</span><span class="s3">),</span>
+        <span class="s3">(</span><span class="s4">75</span><span class="s3">, </span><span class="s5">&quot;хороший&quot;</span><span class="s3">),</span>
+        <span class="s3">(</span><span class="s4">89</span><span class="s3">, </span><span class="s5">&quot;хороший&quot;</span><span class="s3">),</span>
+        <span class="s3">(</span><span class="s4">90</span><span class="s3">, </span><span class="s5">&quot;отличный&quot;</span><span class="s3">),</span>
+    <span class="s3">]</span>
+    <span class="s2">for </span><span class="s1">score</span><span class="s3">, </span><span class="s1">expected_cat </span><span class="s2">in </span><span class="s1">boundary_expected</span><span class="s3">:</span>
+        <span class="s2">assert </span><span class="s1">classify</span><span class="s3">(</span><span class="s1">float</span><span class="s3">(</span><span class="s1">score</span><span class="s3">)) == </span><span class="s1">expected_cat</span>
+
+
+<span class="s2">def </span><span class="s1">main</span><span class="s3">() </span><span class="s1">-&gt; </span><span class="s2">None</span><span class="s3">:</span>
+    <span class="s1">run_tests</span><span class="s3">()</span>
+    <span class="s1">students </span><span class="s3">= {</span>
+        <span class="s5">&quot;Анна&quot;</span><span class="s3">: [</span><span class="s4">80</span><span class="s3">, </span><span class="s4">85</span><span class="s3">, </span><span class="s4">85</span><span class="s3">],</span>
+        <span class="s5">&quot;Борис&quot;</span><span class="s3">: [</span><span class="s4">68</span><span class="s3">, </span><span class="s4">70</span><span class="s3">, </span><span class="s4">72</span><span class="s3">],</span>
+        <span class="s5">&quot;Дарья&quot;</span><span class="s3">: [</span><span class="s4">90</span><span class="s3">, </span><span class="s4">95</span><span class="s3">, </span><span class="s4">92</span><span class="s3">, </span><span class="s4">98</span><span class="s3">],</span>
+        <span class="s5">&quot;Илья&quot;</span><span class="s3">: [</span><span class="s4">54</span><span class="s3">, </span><span class="s4">58</span><span class="s3">, </span><span class="s4">55</span><span class="s3">, </span><span class="s4">59</span><span class="s3">, </span><span class="s4">57</span><span class="s3">],</span>
+    <span class="s3">}</span>
+    <span class="s1">student_data </span><span class="s3">= [</span><span class="s1">student_summary</span><span class="s3">(</span><span class="s1">name</span><span class="s3">, </span><span class="s1">scores</span><span class="s3">) </span><span class="s2">for </span><span class="s1">name</span><span class="s3">, </span><span class="s1">scores </span><span class="s2">in </span><span class="s1">students</span><span class="s3">.</span><span class="s1">items</span><span class="s3">()]</span>
+    <span class="s1">group_data </span><span class="s3">= </span><span class="s1">group_summary</span><span class="s3">(</span><span class="s1">students</span><span class="s3">)</span>
+    <span class="s1">print</span><span class="s3">(</span><span class="s1">format_report</span><span class="s3">(</span><span class="s1">student_data</span><span class="s3">, </span><span class="s1">group_data</span><span class="s3">))</span>
+
+
+<span class="s2">if </span><span class="s1">__name__ </span><span class="s3">== </span><span class="s5">&quot;__main__&quot;</span><span class="s3">:</span>
+    <span class="s1">main</span><span class="s3">()</span></pre>
+</body>
+</html>
