@@ -10,7 +10,7 @@ def build_indexes(
     dict[tuple[str, str], int],
     dict[tuple[str, str], int],
 ]:
-    """Строит множества и словари для быстрого анализа журнала попыток."""
+
     students: set[str] = set()
     labs: set[str] = set()
     by_student: dict[str, list[tuple[str, int]]] = {}
@@ -34,7 +34,6 @@ def build_indexes(
 def students_with_both_labs(
     log: list[Attempt], lab_a: str, lab_b: str
 ) -> set[str]:
-    """Возвращает множество студентов, сдавших обе указанные лабораторные работы."""
     completed_a = {student for student, lab, _ in log if lab == lab_a}
     completed_b = {student for student, lab, _ in log if lab == lab_b}
     return completed_a & completed_b
@@ -45,7 +44,6 @@ def handle_query(
     best_scores: dict[tuple[str, str], int],
     attempt_counts: dict[tuple[str, str], int],
 ) -> str:
-    """Обрабатывает текстовые запросы вида 'best Анна lab_1' или 'attempts Анна lab_1'."""
     parts = query.strip().split()
     if len(parts) != 3:
         return "Ошибка формата запроса. Ожидается: <best|attempts> <студент> <работа>"

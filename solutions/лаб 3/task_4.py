@@ -1,5 +1,3 @@
-"""Лабораторная работа № 3. Задание 4: LEGB, изменяемые аргументы по умолчанию и замыкания."""
-
 from collections.abc import Callable
 
 # Global (G) — используется только для чтения
@@ -7,7 +5,6 @@ course = "Основы программирования"
 
 
 def outer() -> Callable[[], str]:
-    """Демонстрирует области видимости LEGB и модификацию Enclosing через nonlocal."""
     completed_labs = 0  # Enclosing (E)
 
     def register_lab() -> str:
@@ -20,13 +17,11 @@ def outer() -> Callable[[], str]:
 
 
 def add_result_buggy(value: int, results: list[int] = []) -> list[int]:  # noqa: B006
-    """Пример ошибки с изменяемым значением аргумента по умолчанию."""
     results.append(value)
     return results
 
 
 def add_result(value: int, results: list[int] | None = None) -> list[int]:
-    """Исправленная версия: создает новый список и не мутирует переданный."""
     if results is None:
         results = []
     else:
@@ -36,7 +31,6 @@ def add_result(value: int, results: list[int] | None = None) -> list[int]:
 
 
 def make_threshold_checker(threshold: int | float) -> Callable[[int | float], bool]:
-    """Фабрика-замыкание для проверки достижения порогового балла."""
 
     def checker(score: int | float) -> bool:
         return score >= threshold

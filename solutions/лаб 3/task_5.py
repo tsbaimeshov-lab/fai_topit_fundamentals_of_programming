@@ -1,10 +1,7 @@
-"""Лабораторная работа № 3. Задание 5: интеграционный анализатор успеваемости."""
-
 from typing import Any
 
 
 def mean(values: list[int | float]) -> float | None:
-    """Вычисляет среднее арифметическое без использования встроенной sum()."""
     if not values:
         return None
     total = 0.0
@@ -14,7 +11,6 @@ def mean(values: list[int | float]) -> float | None:
 
 
 def minimum(values: list[int | float]) -> int | float | None:
-    """Находит минимальный элемент без использования встроенной min()."""
     if not values:
         return None
     current_min = values[0]
@@ -25,7 +21,6 @@ def minimum(values: list[int | float]) -> int | float | None:
 
 
 def maximum(values: list[int | float]) -> int | float | None:
-    """Находит максимальный элемент без использования встроенной max()."""
     if not values:
         return None
     current_max = values[0]
@@ -36,7 +31,6 @@ def maximum(values: list[int | float]) -> int | float | None:
 
 
 def classify(score: float | None) -> str:
-    """Определяет категорию успеваемости по среднему баллу."""
     if score is None:
         return "нет данных"
     if score >= 90:
@@ -49,7 +43,6 @@ def classify(score: float | None) -> str:
 
 
 def student_summary(name: str, results: list[int]) -> dict[str, Any]:
-    """Формирует индивидуальную сводку по одному студенту."""
     avg = mean(results)
     return {
         "name": name,
@@ -62,7 +55,6 @@ def student_summary(name: str, results: list[int]) -> dict[str, Any]:
 
 
 def find_top_students(students: dict[str, list[int]]) -> list[str]:
-    """Возвращает список имен всех студентов с максимальным средним баллом."""
     best_mean: float | None = None
     leaders: list[str] = []
 
@@ -80,7 +72,6 @@ def find_top_students(students: dict[str, list[int]]) -> list[str]:
 
 
 def group_summary(students: dict[str, list[int]]) -> dict[str, Any]:
-    """Вычисляет агрегированную статистику по всей группе без изменения students."""
     summaries = [student_summary(name, results) for name, results in students.items()]
     valid_means = [item["mean"] for item in summaries if item["mean"] is not None]
 
@@ -105,7 +96,6 @@ def group_summary(students: dict[str, list[int]]) -> dict[str, Any]:
 
 
 def format_report(student_data: list[dict[str, Any]], group_data: dict[str, Any]) -> str:
-    """Форматирует многострочный текстовый отчет по студентам и группе."""
     if not student_data:
         return "Отчет по группе: данные о студентах отсутствуют."
 
@@ -154,7 +144,6 @@ def format_report(student_data: list[dict[str, Any]], group_data: dict[str, Any]
 
 
 def run_tests() -> None:
-    """Проверяет все 6 тестовых сценариев из отчета."""
     # Сценарий 1: обычный набор данных (4 студента, все 4 категории)
     group_1 = {
         "Анна": [80, 85, 85],          # 83.33 -> хороший
